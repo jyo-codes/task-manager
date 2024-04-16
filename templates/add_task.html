@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="my-4">Add New Task</h1>
+{% if error %}
+<div class="alert alert-danger" role="alert">
+    {{ error }}
+</div>
+{% endif %}
+<form action="/add_task" method="post">
+    <div class="form-group">
+        <label for="name">Task Name</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="form-group">
+        <label for="category">Category</label>
+        <select class="form-control" id="category" name="category" required>
+            <option>Education</option>
+            <option>Fitness</option>
+            <option>Finance</option>
+            <option>Home</option>
+            <option>Social</option>
+            <option>Work</option>
+            <option>Personal</option>
+            <option>Shopping</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="due_date">Due Date</label>
+        <input type="date" class="form-control" id="due_date" name="due_date" required>
+    </div>
+    <div class="form-group">
+        <label for="priority">Priority</label>
+        <select class="form-control" id="priority" name="priority" required>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">Add Task</button>
+</form>
+{% endblock %}

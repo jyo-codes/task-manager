@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="my-4">Task List</h1>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Task Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Due Date</th>
+            <th scope="col">Priority</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.name }}</td>
+            <td>{{ task.category }}</td>
+            <td{% if task.past_due %} class="text-danger"{% endif %}>{{ task.due_date }}</td>
+            <td>{{ task.priority }}</td>
+            <td>
+                <a href="/edit_task/{{ task._id }}" class="btn btn-primary btn-sm">Edit</a>
+                <a href="/delete_task/{{ task._id }}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

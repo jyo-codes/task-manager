@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="my-4">Edit Task</h1>
+{% if error %}
+<div class="alert alert-danger" role="alert">
+    {{ error }}
+</div>
+{% endif %}
+<form action="/edit_task/{{ task._id }}" method="post">
+    <div class="form-group">
+        <label for="name">Task Name</label>
+        <input type="text" class="form-control" id="name" name="name" value="{{ task.name }}" required>
+    </div>
+    <div class="form-group">
+        <label for="category">Category</label>
+        <select class="form-control" id="category" name="category" required>
+            <option>Education</option>
+            <option>Fitness</option>
+            <option>Finance</option>
+            <option>Home</option>
+            <option>Social</option>
+            <option>Work</option>
+            <option>Personal</option>
+            <option>Shopping</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="due_date">Due Date</label>
+        <input type="date" class="form-control" id="due_date" name="due_date" value="{{ task.due_date}}" required>
+    </div>
+    <div class="form-group">
+        <label for="priority">Priority</label>
+        <select class="form-control" id="priority" name="priority" required>
+            <option value="High" {% if task.priority == 'High' %}selected{% endif %}>High</option>
+            <option value="Medium" {% if task.priority == 'Medium' %}selected{% endif %}>Medium</option>
+            <option value="Low" {% if task.priority == 'Low' %}selected{% endif %}>Low</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Task</button>
+</form>
+{% endblock %}
+
